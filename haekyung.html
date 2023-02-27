@@ -12,7 +12,6 @@
   <script>
     // console.dir(window)
     // window.cssText="margin:0; padding:0; box-sizing:border-box;"
-    // 전체선택자 적용을 찾는 중.
     // document.querySelectorAll("body div").cssText="margin:0; padding:0; box-sizing:border-box;"
 
     document.body.style.cssText = "margin:0; padding:0; box-sizing:border-box; overflow-x : hidden;";
@@ -36,7 +35,7 @@
     console.dir(document.body)
 
     function DivStyle(element) {
-        element.style.width = StyleList.Width[1],
+      element.style.width = StyleList.Width[1],
         element.style.height = StyleList.Height[1],
         element.style.borderRadius = "250px",
         element.style.opacity = "0.8",
@@ -65,29 +64,31 @@
     let count = 0;
 
     //아래는 가장 앞에 위치한 div이 root.children[2] 라서 그걸 클릭시 이벤트가 발생하게 만듦.
-    root.children[2].addEventListener("click", function () {
+    root.addEventListener("click", function () {
       let rainbow = ["red", "orange", "yellow", "green", "blue", "indigo", "purple"];
       root.style.backgroundColor = rainbow[count];
       count = count + 1;
-      root.children[0].style.display = "none";
-      root.children[1].style.display = "none";
+      
       if (count >= rainbow.length) {
         count = 0;//만약 색상이 레인보우갯수보다 늘어나면 0으로 리셋
       }
 
-      //만약 카운터가 0이거나 3의 배수라면 가장 앞의 원을,
-      //만약 카운터가 1이거나 4의 배수라면 두번째
-      //만약 카운터가 2이거나 5의 배수라면 세번째 원을 남기기 도 가능할 거 같은데!!
+      if (count % 3 === 0) {
+        root.children[0].style.display = "none";
+        root.children[1].style.display = "none";
+        root.children[2].style.display = "block";
+      }else if(count % 3 === 1){
+        root.children[0].style.display = "none";
+        root.children[1].style.display = "block";
+        root.children[2].style.display = "none";
+      }else{
+        root.children[0].style.display = "block";
+        root.children[1].style.display = "none";
+        root.children[2].style.display = "none";
+      }//누적되서 모든 display가 none으로 가서, 사라지지 않을 div에 display 속성 부여.
 
     })
-    //가장 앞에 있는 원형(root.children[2])을 클릭시 뒤에 두개의 원이 사라지고, 배경은 레인보우로 바뀌게 해놓음.
-
-
-
-    // document.querySelectorAll("body div").style="margin:0; padding:0; box-sizing:border-box;"
-    // console.dir(document.querySelectorAll('body div'))
-
-
+    //배경을 선택하면 앞에 div 2개는 사라지고 하나만 남게 해놓음.
 
   </script>
 </body>
