@@ -7,6 +7,41 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <script>
+    // let body = document.body;
+    // console.dir(window)
+    // window.cssText="margin:0; padding:0; box-sizing:border-box;"
+    // 전체선택자 적용을 찾는 중.
+    // document.querySelectorAll("body div").cssText="margin:0; padding:0; box-sizing:border-box;"
+    
+    document.body.style.cssText="margin:0; padding:0; box-sizing:border-box; overflow-x : hidden;";
+    //우선 못찾아서 body에 적용함.
+
+    let root=document.createElement("div");
+    root.setAttribute("id","root");
+    root.style.cssText="width:100vw; height:100vh; background-color:cadetblue; display:flex; justify-content:center; align-items:center; position:relative;"
+    document.body.appendChild(root);
+
+    for(i=0;i<3;i++){
+      let divs=document.createElement("div");
+      // divs.style.cssText="width:500px; height:500px; border-radius:250px; opacity:0.8; position:absolute;";
+      // 이렇게 공통적이었던 건 빼고 각자 세부적인 css text만 if문 안에 적용했더니 if 안의 값만 적용됨.
+      if(i===0){//1번째 div
+        divs.style.cssText="width:500px; height:500px; border-radius:250px; opacity:0.8; position:absolute;margin-top:300px; margin-left:300px; background-color:salmon; filter:blur(20px);"
+      }else if(i===1){//2번째 div
+        divs.style.cssText="width:500px; height:500px; border-radius:250px; opacity:0.8; position:absolute;margin-top:50px; margin-left:-50px; background-color:cornflowerblue; filter:blur(20px);"
+      }else{//3번째 div
+        divs.style.cssText="width:500px; height:500px; border-radius:250px; opacity:0.8; position:absolute;margin-top:-100px; margin-left:50px; background-color:coral; filter:blur(10px);"
+      }
+      
+      root.appendChild(divs);
+    }
+
+    // document.querySelectorAll("body div").style="margin:0; padding:0; box-sizing:border-box;"
+    // console.dir(document.querySelectorAll('body div'))
+
+      
+
+  </script>
 </body>
 </html>
